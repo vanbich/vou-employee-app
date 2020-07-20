@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 // Externals
 import classNames from "classnames";
@@ -12,7 +11,6 @@ import { withStyles, Button } from "@material-ui/core";
 
 // Material components
 import {
-  Avatar,
   Table,
   TableBody,
   TableCell,
@@ -21,9 +19,6 @@ import {
   Typography,
   TablePagination
 } from "@material-ui/core";
-
-// Shared helpers
-import { getInitials } from "../../../../helpers";
 
 // Shared components
 import { Portlet, PortletContent } from "../../../../components";
@@ -48,7 +43,7 @@ class UsersTable extends Component {
 
   render() {
     const { classes, className, users } = this.props;
-    const { activeTab, selectedUsers, rowsPerPage, page } = this.state;
+    const { activeTab, rowsPerPage, page } = this.state;
 
     const rootClassName = classNames(classes.root, className);
 
@@ -59,11 +54,11 @@ class UsersTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="left">#Top</TableCell>
-                  <TableCell align="left">Name</TableCell>
-                  <TableCell align="left">Voucher</TableCell>
-                  <TableCell align="left">Score</TableCell>
-                  <TableCell align="left">Time</TableCell>
+                  <TableCell align="center">#Top</TableCell>
+                  <TableCell align="center">Name</TableCell>
+                  <TableCell align="center">Game</TableCell>
+                  <TableCell align="center">Score</TableCell>
+                  <TableCell align="center">Time</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -85,9 +80,8 @@ class UsersTable extends Component {
                       key={index}
                       className={classes.tableRow}
                       hover
-                      selected={selectedUsers.indexOf(user.id) !== -1}
                     >
-                      <TableCell className={classes.tableCell}>
+                      <TableCell className={classes.tableCell} align="center">
                         <Button
                           className={classes.button}
                           style={
@@ -103,31 +97,21 @@ class UsersTable extends Component {
                           {user.top}
                         </Button>
                       </TableCell>
-                      <TableCell className={classes.tableCell}>
-                        <div className={classes.tableCellInner}>
-                          <Avatar
-                            className={classes.avatar}
-                            src={user.avatarUrl}
-                          >
-                            {getInitials(user.name)}
-                          </Avatar>
-                          <Link to="#">
-                            <Typography
-                              className={classes.nameText}
-                              variant="body1"
-                            >
-                              {user.name}
-                            </Typography>
-                          </Link>
-                        </div>
+                      <TableCell className={classes.tableCell} align="center">
+                        <Typography
+                            className={classes.nameText}
+                            variant="body1"
+                        >
+                          {user.name}
+                        </Typography>
                       </TableCell>
-                      <TableCell className={classes.tableCell}>
+                      <TableCell className={classes.tableCell} align="center">
                         {user.voucher}
                       </TableCell>
-                      <TableCell className={classes.tableCell}>
+                      <TableCell className={classes.tableCell}  align="center">
                         {user.score}
                       </TableCell>
-                      <TableCell className={classes.tableCell}>
+                      <TableCell className={classes.tableCell} align="center">
                         {moment(user.createdAt).format("DD/MM/YYYY")}
                       </TableCell>
                     </TableRow>

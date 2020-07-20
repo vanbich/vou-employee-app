@@ -8,6 +8,8 @@ import { withStyles } from "@material-ui/core";
 
 // Material components
 import { CircularProgress, Typography } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
 // Shared layouts
 import { Dashboard as DashboardLayout } from "../../layouts";
@@ -20,8 +22,6 @@ import { UsersToolbar, UsersTable } from "./components";
 
 // Component styles
 import styles from "./style";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 
 class UserList extends Component {
   signal = true;
@@ -95,8 +95,6 @@ class UserList extends Component {
 
     return (
       <UsersTable
-        //
-        onSelect={this.handleSelect}
         users={users}
       />
     );
@@ -107,31 +105,34 @@ class UserList extends Component {
     const { date } = this.state;
 
     return (
-      <DashboardLayout title="Users">
+      <DashboardLayout title="Leaderboard">
         <Grid
           container
           direction="row"
-          justify="center"
+          justify="space-around"
           alignItems="center"
-          style={{ backgroundColor: "#ffc5bd" }}
+          style={{ backgroundColor: "#ffc5bd", maxHeight: 350}}
         >
-          <Grid item lg={4} md={6} xl={4} xs={12}>
+          <Grid item>
             <Typography
+                variant="h2"
               style={{
                 fontFamily: "Pacifico",
-                fontSize: "30px",
                 color: "white"
               }}
             >
-              Who's winner?
+              Leaderboard
             </Typography>
           </Grid>
-          <Grid item lg={6} md={6} xl={6} xs={12}>
-            <Box display="flex" justifyContent="center" m={1} p={1}>
+          <Grid item>
+            <Box display="flex" justifyContent="center">
               <img
                 alt="Brainalytica logo"
                 src="/images/banners/promotion.png"
-              />
+              style={{
+                maxWidth: "80%",
+                maxHeight: "80%",
+              }}/>
             </Box>
           </Grid>
         </Grid>

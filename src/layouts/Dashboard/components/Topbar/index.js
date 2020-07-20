@@ -20,44 +20,14 @@ import {
 // Material icons
 import { Input as InputIcon } from "@material-ui/icons";
 
-// Shared services
-import { getNotifications } from "../../../../services/notification";
-
 // Component styles
 import styles from "./styles";
 
 class Topbar extends Component {
   signal = true;
 
-  state = {
-    notifications: [],
-    notificationsLimit: 4,
-    notificationsCount: 0,
-    notificationsEl: null
-  };
-
-  async getNotifications() {
-    try {
-      const { notificationsLimit } = this.state;
-
-      const { notifications, notificationsCount } = await getNotifications(
-        notificationsLimit
-      );
-
-      if (this.signal) {
-        this.setState({
-          notifications,
-          notificationsCount
-        });
-      }
-    } catch (error) {
-      return;
-    }
-  }
-
   componentDidMount() {
     this.signal = true;
-    this.getNotifications();
   }
 
   componentWillUnmount() {
@@ -69,18 +39,6 @@ class Topbar extends Component {
 
     localStorage.setItem("isAuthenticated", false);
     history.push("/sign-in");
-  };
-
-  handleShowNotifications = event => {
-    this.setState({
-      notificationsEl: event.currentTarget
-    });
-  };
-
-  handleCloseNotifications = () => {
-    this.setState({
-      notificationsEl: null
-    });
   };
 
   render() {
